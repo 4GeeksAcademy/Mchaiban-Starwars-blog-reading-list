@@ -1,32 +1,45 @@
-export const initialStore=()=>{
-  return{
-    message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
-  }
-}
+// src/store.js
 
+// 1️⃣ Initial state
+export const initialStore = () => ({
+  people: [],
+  vehicles: [],
+  planets: [],
+  favorites: []
+});
+
+// 2️⃣ Reducer
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
+  switch (action.type) {
 
-      const { id,  color } = action.payload
-
+    // — Favorites toggle (already in place) —
+    case "TOGGLE_FAVORITE": {
+      const item = action.payload;
+      const exists = store.favorites.some(
+        f => f.type === item.type && f.id === item.id
+      );
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        favorites: exists
+          ? store.favorites.filter(
+              f => !(f.type === item.type && f.id === item.id)
+            )
+          : [...store.favorites, item]
       };
+    }
+
+    // — New: set data from SWAPI —
+    case "SET_PEOPLE":
+      return { ...store, people: action.payload };
+
+    case "SET_VEHICLES":
+      return { ...store, vehicles: action.payload };
+
+    case "SET_PLANETS":
+      return { ...store, planets: action.payload };
+
+    // — Fallback —
     default:
-      throw Error('Unknown action.');
-  }    
+      return store;
+  }
 }

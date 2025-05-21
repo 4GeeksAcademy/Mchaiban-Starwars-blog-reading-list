@@ -1,16 +1,17 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import React from "react";
+import { CardGrid } from "../components/CardGrid";
 
 export const Home = () => {
+  return (
+    <>
+      {/* Characters */}
+      <CardGrid type="people" />
 
-  const {store, dispatch} =useGlobalReducer()
+      {/* Vehicles */}
+      <CardGrid type="vehicles" />
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-		</div>
-	);
-}; 
+      {/* Planets */}
+      <CardGrid type="planets" />
+    </>
+  );
+};
