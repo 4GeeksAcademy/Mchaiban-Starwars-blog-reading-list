@@ -44,16 +44,7 @@ export const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/demo">
-                Demo
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/single/1">
-                Single #1
-              </Link>
-            </li>
+      
 
             {/* Favorites dropdown */}
             <li className="nav-item dropdown">

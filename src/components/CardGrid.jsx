@@ -8,7 +8,6 @@ export const CardGrid = ({ type }) => {
   const items = store[type] || [];
   const favorites = store.favorites || [];
 
-  // Fetch data from SWAPI.tech on mount or when `type` changes
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,8 +16,8 @@ export const CardGrid = ({ type }) => {
         const payload = json.results.map((item) => ({
           id: item.uid,
           name: item.name,
-          type,            // so favorites know which slice it came from
-          url: item.url    // useful later for details view
+          type,            
+          url: item.url    
         }));
 
         dispatch({
@@ -33,7 +32,6 @@ export const CardGrid = ({ type }) => {
     fetchData();
   }, [type, dispatch]);
 
-  // Human‐friendly section title
   const title =
     type === "people"
       ? "Characters"

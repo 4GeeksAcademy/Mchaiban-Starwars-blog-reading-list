@@ -1,4 +1,3 @@
-// src/store.js
 
 // 1️⃣ Initial state
 export const initialStore = () => ({
